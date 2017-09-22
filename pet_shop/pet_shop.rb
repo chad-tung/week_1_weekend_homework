@@ -94,9 +94,8 @@ def sell_pet_to_customer(section, pet_name, customer)
     for pet in section[:pets]
       if pet[:name] == pet_name[:name]
         customer[:pets].push(pet[:name])
-        cost = pet[:price]
         section[:admin][:pets_sold] += 1
-        section[:admin][:total_cash] += cost
+        section[:admin][:total_cash] += pet[:price]
       end
     end
   end
