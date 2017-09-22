@@ -74,3 +74,33 @@ end
 def add_pet_to_customer(customer, new_pet)
   customer[:pets] << new_pet
 end
+
+
+##################OPTIONAL####################
+
+#Op1&2
+def customer_can_afford_pet(customer, pet)
+  if customer[:cash] >= pet[:price]
+    return true
+  else
+    return false
+  end
+end
+
+#Op3%4&5
+#We want to sell a pet to a customer and update the database
+def sell_pet_to_customer(section, pet_name, customer)
+  unless pet_name == nil || customer_can_afford_pet(customer, pet_name) == false
+    for pet in section[:pets]
+      if pet[:name] == pet_name[:name]
+        customer[:pets].push(pet[:name])
+        cost = pet[:price]
+        section[:admin][:pets_sold] += 1
+        section[:admin][:total_cash] += cost
+      else
+        section[:admin][:pets_sold] += 0
+        section[:admin][:total_cash] += 0
+      end
+    end
+  end
+end
