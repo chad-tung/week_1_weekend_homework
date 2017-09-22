@@ -80,11 +80,7 @@ end
 
 #Op1&2
 def customer_can_afford_pet(customer, pet)
-  if customer[:cash] >= pet[:price]
-    return true
-  else
-    return false
-  end
+  return customer[:cash] >= pet[:price]
 end
 
 #Op3%4&5
