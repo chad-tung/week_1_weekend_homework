@@ -97,9 +97,6 @@ def sell_pet_to_customer(section, pet_name, customer)
         cost = pet[:price]
         section[:admin][:pets_sold] += 1
         section[:admin][:total_cash] += cost
-      else
-        section[:admin][:pets_sold] += 0
-        section[:admin][:total_cash] += 0
       end
     end
   end
