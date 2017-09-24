@@ -53,11 +53,12 @@ end
 
 #12
 def remove_pet_by_name(section, name)
-  for pet in section[:pets]
-    if pet[:name] == name
-      section[:pets].delete(pet)
-    end
-  end
+  section[:pets].delete(find_pet_by_name(section, name))
+  # for pet in section[:pets]
+  #   if pet[:name] == name
+  #     section[:pets].delete(pet)
+  #   end
+  # end
 end
 
 #13
@@ -82,17 +83,20 @@ end
 def customer_can_afford_pet(customer, pet)
   return customer[:cash] >= pet[:price]
 end
+# >= returns boolean.
 
-#Op3%4&5
+#Op3&4&5
 #We want to sell a pet to a customer and update the database
 def sell_pet_to_customer(section, pet_name, customer)
   unless pet_name == nil || customer_can_afford_pet(customer, pet_name) == false
-    for pet in section[:pets]
-      if pet[:name] == pet_name[:name]
-        customer[:pets].push(pet[:name])
-        section[:admin][:pets_sold] += 1
-        section[:admin][:total_cash] += pet[:price]
-      end
-    end
+    add_pet_to_customer(customer, pet_name)
+    increase_pets_sold(section, 1)
+    add_or_remove_cash(section, pet_name[:price])
+  # for pet in section[:pets]
+    # if pet[:name] == pet_name[:name]
+      # find_pet_by_name(section, name)
+      # customer[:pets].push(pet[:name])
+      # section[:admin][:pets_sold] += 1
+      # section[:admin][:total_cash] += pet[:price]
   end
 end
